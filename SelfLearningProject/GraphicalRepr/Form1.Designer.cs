@@ -34,12 +34,32 @@
             this.btnAutomatic = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblAlive = new System.Windows.Forms.Label();
+            this.lblMovements = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblSankesWhoAte = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lblGeneration = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lblMeanDistanceOfGeneration = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.lblMeanDistanceOfGeneration);
+            this.panel2.Controls.Add(this.label5);
+            this.panel2.Controls.Add(this.lblGeneration);
+            this.panel2.Controls.Add(this.label4);
+            this.panel2.Controls.Add(this.lblSankesWhoAte);
+            this.panel2.Controls.Add(this.label3);
+            this.panel2.Controls.Add(this.lblMovements);
+            this.panel2.Controls.Add(this.lblAlive);
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.button1);
             this.panel2.Controls.Add(this.btnAutomatic);
             this.panel2.Controls.Add(this.btnNextStep);
@@ -99,6 +119,97 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_2);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(56, 353);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(29, 13);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "alive";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(38, 385);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(62, 13);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Movements";
+            // 
+            // lblAlive
+            // 
+            this.lblAlive.AutoSize = true;
+            this.lblAlive.Location = new System.Drawing.Point(140, 353);
+            this.lblAlive.Name = "lblAlive";
+            this.lblAlive.Size = new System.Drawing.Size(13, 13);
+            this.lblAlive.TabIndex = 8;
+            this.lblAlive.Text = "0";
+            // 
+            // lblMovements
+            // 
+            this.lblMovements.AutoSize = true;
+            this.lblMovements.Location = new System.Drawing.Point(140, 385);
+            this.lblMovements.Name = "lblMovements";
+            this.lblMovements.Size = new System.Drawing.Size(13, 13);
+            this.lblMovements.TabIndex = 9;
+            this.lblMovements.Text = "0";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(38, 417);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(84, 13);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Sankes who ate";
+            // 
+            // lblSankesWhoAte
+            // 
+            this.lblSankesWhoAte.AutoSize = true;
+            this.lblSankesWhoAte.Location = new System.Drawing.Point(140, 417);
+            this.lblSankesWhoAte.Name = "lblSankesWhoAte";
+            this.lblSankesWhoAte.Size = new System.Drawing.Size(13, 13);
+            this.lblSankesWhoAte.TabIndex = 11;
+            this.lblSankesWhoAte.Text = "0";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(38, 314);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(59, 13);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "Generation";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
+            // 
+            // lblGeneration
+            // 
+            this.lblGeneration.AutoSize = true;
+            this.lblGeneration.Location = new System.Drawing.Point(140, 314);
+            this.lblGeneration.Name = "lblGeneration";
+            this.lblGeneration.Size = new System.Drawing.Size(13, 13);
+            this.lblGeneration.TabIndex = 13;
+            this.lblGeneration.Text = "0";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(3, 460);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(146, 13);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "Mean distance Of Generation";
+            // 
+            // lblMeanDistanceOfGeneration
+            // 
+            this.lblMeanDistanceOfGeneration.AutoSize = true;
+            this.lblMeanDistanceOfGeneration.Location = new System.Drawing.Point(177, 460);
+            this.lblMeanDistanceOfGeneration.Name = "lblMeanDistanceOfGeneration";
+            this.lblMeanDistanceOfGeneration.Size = new System.Drawing.Size(13, 13);
+            this.lblMeanDistanceOfGeneration.TabIndex = 15;
+            this.lblMeanDistanceOfGeneration.Text = "0";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -109,6 +220,7 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
@@ -121,6 +233,16 @@
         private System.Windows.Forms.Button btnAutomatic;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label lblMovements;
+        private System.Windows.Forms.Label lblAlive;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblSankesWhoAte;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblGeneration;
+        private System.Windows.Forms.Label lblMeanDistanceOfGeneration;
+        private System.Windows.Forms.Label label5;
     }
 }
 

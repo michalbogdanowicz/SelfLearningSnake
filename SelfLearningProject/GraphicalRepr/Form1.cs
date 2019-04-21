@@ -48,22 +48,22 @@ namespace GraphicalRepr
         {
             using (var graphics = Graphics.FromImage(bitmap))
             {
-                var array = World.GetInstance().space;
+                var array = World.GetInstance().GetRepresentation();
                 for (int i = 0; i < 64; i++)
                 {
                     for (int j = 0; j < 64; j++)
                     {
                         int x = array[i, j];
 
-                        if (x == (int)World.Thing.Food)
+                        if (x == (int)Thing.Food)
                         {
                             Draw(graphics, i, j, Color.Red);
                         }
-                        else if (x == (int)World.Thing.Empty)
+                        else if (x == (int)Thing.Empty)
                         {
                             Draw(graphics, i, j, Color.Black);
                         }
-                        else if (x == (int)World.Thing.Head)
+                        else if (x == (int)Thing.Head)
                         {
                             Draw(graphics, i, j, Color.Green);
                         }
@@ -120,7 +120,7 @@ namespace GraphicalRepr
 
         private void button2_Click(object sender, EventArgs e)
         {
-            timer.Interval = 100;
+            timer.Interval = 25;
             timer.Start();
         }
 
@@ -137,6 +137,13 @@ namespace GraphicalRepr
                 World.GetInstance().NextStep();
                 VisualizedOnBitmap();
                 this.pictureBox1.Invalidate();
+
+                SnakeReport report = World.GetInstance().GetSnakeReport();
+                lblAlive.Text = report.AliveSnakes.ToString();
+                lblMovements.Text = report.Movements.ToString();
+                lblSankesWhoAte.Text = report.SnakesWhoAte.ToString();
+                lblGeneration.Text = report.Generation.ToString();
+                lblMeanDistanceOfGeneration.Text = report.MeanDistanceOfGeneration.ToString();
             }
             catch (SnakeIsOutOfBoundsException)
             {
@@ -158,10 +165,15 @@ namespace GraphicalRepr
         /// <param name="e"></param>
         private void button1_Click_2(object sender, EventArgs e)
         {
-            World.GetInstance().GenerateSpecificWorld(new Location(10, 50), new Location(2, 22));
+            World.GetInstance().GenerateSpecificWorld(new Location(10, 50), new Location(30, 22));
             VisualizedOnBitmap();
             this.pictureBox1.Invalidate();
             EnableButtons();
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

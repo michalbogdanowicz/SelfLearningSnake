@@ -1,4 +1,6 @@
-﻿namespace SelfLearningProject
+﻿using System;
+
+namespace SelfLearningProject
 {
     public class Location
     {
@@ -14,6 +16,16 @@
         {
             this.X = x;
             this.Y = y;
+        }
+
+        public double DistanceFrom(Location loc)
+        {
+            int xDiff = this.X - loc.X;
+            int yDiff = this.Y - loc.Y;
+            double square = Math.Sqrt( Math.Pow(xDiff,2) + Math.Pow(yDiff, 2));
+
+
+            return square;
         }
     }
 }
