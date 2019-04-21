@@ -1,4 +1,5 @@
 ﻿using SelfLearningProject;
+using SelfLearningProject.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,24 +18,30 @@ namespace GraphicalRepr
 
         int squareWidth = 0;
         int squareHeight = 0;
+        Timer timer = new Timer();
         public Form1()
         {
             InitializeComponent();
-            bitmap = new Bitmap(panel1.Width, panel1.Height);
-            squareWidth = panel1.Width / 64;
-            squareHeight = panel1.Height / 64;
+            bitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            squareWidth = pictureBox1.Width / 64;
+            squareHeight = pictureBox1.Height / 64;
+
+            btnAutomatic.Enabled = false;
+            btnNextStep.Enabled = false;
+
+            timer.Tick += Timer_Tick;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             World.GetInstance().GenerateFood();
             VisualizedOnBitmap();
-            this.panel1.Refresh();
+            this.pictureBox1.Invalidate();
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.DrawImage(bitmap, new Point(0, 0));
+
         }
 
         private void VisualizedOnBitmap()
@@ -50,7 +57,7 @@ namespace GraphicalRepr
 
                         if (x == (int)World.Thing.Food)
                         {
-                            Draw(graphics, i, j,Color.Red);
+                            Draw(graphics, i, j, Color.Red);
                         }
                         else if (x == (int)World.Thing.Empty)
                         {
@@ -60,7 +67,8 @@ namespace GraphicalRepr
                         {
                             Draw(graphics, i, j, Color.Green);
                         }
-                        else {
+                        else
+                        {
                             throw new ArgumentException();
                         }
 
@@ -86,15 +94,74 @@ namespace GraphicalRepr
         }
 
         /// <summary>
-        /// Generate game
+        /// Generate World
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void button3_Click(object sender, EventArgs e)
         {
-            World.GetInstance().GenerateGame();
+            World.GetInstance().GenerateRandomWorld();
             VisualizedOnBitmap();
-            this.panel1.Refresh();
+            this.pictureBox1.Invalidate();
+
+            EnableButtons();
+        }
+
+        private void EnableButtons()
+        {
+            btnAutomatic.Enabled = true;
+            btnNextStep.Enabled = true;
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            ManageStep();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            timer.Interval = 100;
+            timer.Start();
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            ManageStep();
+        }
+
+        private void ManageStep()
+        {
+
+            try
+            {
+                World.GetInstance().NextStep();
+                VisualizedOnBitmap();
+                this.pictureBox1.Invalidate();
+            }
+            catch (SnakeIsOutOfBoundsException)
+            {
+                btnAutomatic.Enabled = false;
+                btnNextStep.Enabled = false;
+                timer.Stop();
+                MessageBox.Show("The snake died");
+            }
+        }
+
+        private void pictureBox1_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.DrawImage(bitmap, new Point(0, 0));
+        }
+        /// <summary>
+        /// geneare the specific world
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            World.GetInstance().GenerateSpecificWorld(new Location(10, 50), new Location(2, 22));
+            VisualizedOnBitmap();
+            this.pictureBox1.Invalidate();
+            EnableButtons();
         }
     }
 }

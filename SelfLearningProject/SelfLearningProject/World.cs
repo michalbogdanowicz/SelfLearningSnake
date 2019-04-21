@@ -1,5 +1,7 @@
-﻿using System;
+﻿using SelfLearningProject.Exceptions;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text;
 
 namespace SelfLearningProject
@@ -11,6 +13,7 @@ namespace SelfLearningProject
         private static World instance;
         int maxX = 64;
         int maxY = 64;
+        Snake snake = new Snake();
 
         public static World GetInstance()
         {
@@ -42,10 +45,21 @@ namespace SelfLearningProject
         /// </summary>
         /// <param name="copySpace"></param>
         /// <returns></returns>
-        public int[] GenerateFood(bool copySpace = false)
+        public int[] GenerateFood()
         {
             var cords = GetTwoRandomNumbers();
             this.space[cords[0], cords[1]] = (int)Thing.Food;
+            return cords;
+        }
+        /// <summary>
+        /// returns the cords
+        /// </summary>
+        /// <param name="copySpace"></param>
+        /// <returns></returns>
+        public int[] GenerateFood(Location loc)
+        {
+            var cords = GetTwoRandomNumbers();
+            this.space[loc.X, loc.Y] = (int)Thing.Food;
             return cords;
         }
 
@@ -71,7 +85,7 @@ namespace SelfLearningProject
 
         public void GenerateSnake()
         {
-    
+
             bool foundGoodSpace = true;
             do
             {
@@ -80,15 +94,54 @@ namespace SelfLearningProject
                 if (foundGoodSpace)
                 {
                     this.space[cords[0], cords[1]] = (int)Thing.Head;
+                    snake.HeadPosition.X = cords[0];
+                    snake.HeadPosition.Y = cords[1];
                 }
             } while (!foundGoodSpace);
         }
 
-        public void GenerateGame()
+        public void GenerateSnake(Location location)
+        {
+            this.space[location.X, location.Y] = (int)Thing.Head;
+            snake.HeadPosition = location;
+        }
+
+        public void GenerateRandomWorld()
         {
             Init();
-             GenerateFood();
+            GenerateFood();
             GenerateSnake();
+        }
+
+        public void GenerateSpecificWorld(Location foodLocaiton, Location snakeLocation)
+        {
+            Init();
+            GenerateFood(foodLocaiton);
+            GenerateSnake(snakeLocation);
+        }
+
+        public void NextStep()
+        {
+
+            SnakeBehaviourDecider decider = new SnakeBehaviourDecider();
+            var nextStep = decider.DecideNextStep(this.space, this.maxX);
+
+            this.space[this.snake.HeadPosition.X, this.snake.HeadPosition.Y] = (int)Thing.Empty;
+            switch (nextStep)
+            {
+                case Direction.Left: this.snake.HeadPosition.X--; break;
+                case Direction.Top: this.snake.HeadPosition.Y++; break;
+                case Direction.Right: this.snake.HeadPosition.X++; break;
+                case Direction.Down: this.snake.HeadPosition.Y--; break;
+                default: throw new ArgumentException();
+            }
+            if (this.snake.IsOutOfBounds(this.maxX, this.maxY))
+            {
+                throw new SnakeIsOutOfBoundsException();
+            }
+            this.space[this.snake.HeadPosition.X, this.snake.HeadPosition.Y] = (int)Thing.Head;
+
         }
     }
 }
+
