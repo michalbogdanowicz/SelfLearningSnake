@@ -30,7 +30,7 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnGenerateGame = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,22 +46,22 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.btnGenerateGame);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel2.Location = new System.Drawing.Point(998, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(416, 608);
             this.panel2.TabIndex = 1;
             // 
-            // button1
+            // btnGenerateGame
             // 
-            this.button1.Location = new System.Drawing.Point(222, 149);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(123, 25);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "GenerateFood";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnGenerateGame.Location = new System.Drawing.Point(222, 246);
+            this.btnGenerateGame.Name = "btnGenerateGame";
+            this.btnGenerateGame.Size = new System.Drawing.Size(123, 23);
+            this.btnGenerateGame.TabIndex = 2;
+            this.btnGenerateGame.Text = "Generate Game";
+            this.btnGenerateGame.UseVisualStyleBackColor = true;
+            this.btnGenerateGame.Click += new System.EventHandler(this.button3_Click);
             // 
             // Form1
             // 
@@ -81,7 +81,7 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnGenerateGame;
     }
 }
 

@@ -17,7 +17,6 @@ namespace GraphicalRepr
 
         int squareWidth = 0;
         int squareHeight = 0;
-        bool firstDraw = true;
         public Form1()
         {
             InitializeComponent();
@@ -35,16 +34,7 @@ namespace GraphicalRepr
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
-
-
             e.Graphics.DrawImage(bitmap, new Point(0, 0));
-
-
-            //var g = e.Graphics;
-
-            ////  ResetPanelGraphic(p, g);
-            //Visualize(p, g);
-            //bitmap = new Bitmap(panel1.Width, panel1.Height, g);
         }
 
         private void VisualizedOnBitmap()
@@ -52,33 +42,30 @@ namespace GraphicalRepr
             using (var graphics = Graphics.FromImage(bitmap))
             {
                 var array = World.GetInstance().space;
-                var past = World.GetInstance().lastSpace;
                 for (int i = 0; i < 64; i++)
                 {
                     for (int j = 0; j < 64; j++)
                     {
-
                         int x = array[i, j];
-                        int y = past[i, j];
-                        if (firstDraw || x != y)
+
+                        if (x == (int)World.Thing.Food)
                         {
-                            if (x == (int)World.Thing.Food)
-                            {
-                                DrawRed(graphics, i, j);
-                            }
-                            else if (x == (int)World.Thing.Empty)
-                            {
-                                Draw(graphics, i, j, Color.Black);
-                            }
-                            else
-                            {
-                                throw new ArgumentException();
-                            }
+                            Draw(graphics, i, j,Color.Red);
                         }
+                        else if (x == (int)World.Thing.Empty)
+                        {
+                            Draw(graphics, i, j, Color.Black);
+                        }
+                        else if (x == (int)World.Thing.Head)
+                        {
+                            Draw(graphics, i, j, Color.Green);
+                        }
+                        else {
+                            throw new ArgumentException();
+                        }
+
                     }
                 }
-                firstDraw = false;
-                World.GetInstance().CopyCurrentSpace();
             }
         }
 
@@ -98,18 +85,16 @@ namespace GraphicalRepr
             g.FillPolygon(brush, points);
         }
 
-        //private void PrintEverythingBlack(Graphics g)
-        //{
-
-        //    Brush brush = new SolidBrush(Color.Black);
-        //    Point[] points = new Point[4];
-
-        //    points[0] = new Point(0, 0);
-        //    points[1] = new Point(0, p.Height);
-        //    points[2] = new Point(p.Width, p.Height);
-        //    points[3] = new Point(p.Width, 0);
-        //    g.FillPolygon(brush, points);
-
-        //}
+        /// <summary>
+        /// Generate game
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button3_Click(object sender, EventArgs e)
+        {
+            World.GetInstance().GenerateGame();
+            VisualizedOnBitmap();
+            this.panel1.Refresh();
+        }
     }
 }
