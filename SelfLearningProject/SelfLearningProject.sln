@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2003
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SelfLearningProject", "SelfLearningProject\SelfLearningProject.csproj", "{07120057-9E0B-4AC3-B5ED-83B8AC64D28E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphicalRepr", "GraphicalRepr\GraphicalRepr.csproj", "{59F36B10-A42A-4D38-8478-501FFF8AEA6C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{07120057-9E0B-4AC3-B5ED-83B8AC64D28E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07120057-9E0B-4AC3-B5ED-83B8AC64D28E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07120057-9E0B-4AC3-B5ED-83B8AC64D28E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07120057-9E0B-4AC3-B5ED-83B8AC64D28E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59F36B10-A42A-4D38-8478-501FFF8AEA6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59F36B10-A42A-4D38-8478-501FFF8AEA6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59F36B10-A42A-4D38-8478-501FFF8AEA6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59F36B10-A42A-4D38-8478-501FFF8AEA6C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0EEBE896-A9C1-43E7-BC6D-5CC31768E17E}
+	EndGlobalSection
+EndGlobal
